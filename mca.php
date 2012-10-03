@@ -4,7 +4,7 @@ Plugin Name: Media Copyright Attribution
 Plugin URL: http://github.com/ubc/mca
 Description: Allows user to add copyright attribution for media files
 Version: 0.9
-Author: Michael Ha
+Author: Michael Haa
 Author URI: http://ctlt.ubc.ca/
 License: GPLv2
 */
