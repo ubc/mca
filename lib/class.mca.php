@@ -12,7 +12,7 @@ class MCA {
 	}
 
 	public function pre_upload_ui_filter() {
-		echo "<p class='s-desc'>For record keeping purposes, please confirm the copyright authorization(s) that apply to the uploaded material(s), from the list below. <em>Note</em>: If uploaded materials contain content from different sources, authorization is required for each source and such information should be recorded. <a target='_blank' href=''>Help</a></p>";
+		echo "<p class='s-desc'>For record keeping purposes, please confirm the copyright authorization(s) that apply to the uploaded material(s), from the list below. <em>Note</em>: If uploaded materials contain content from different sources, authorization is required for each source and such information should be recorded. <a target='_blank' href='http://wiki.ubc.ca/Documentation:UBC_Blogs/Copyright_upload_Form'>Help</a></p>";
 		echo "<p><input type='checkbox' name='cbcr1' value='cbcr1' id='cbcr1'> <label for='cbcr1'><strong>With the permission of the copyright holder(s)</strong> <div id='explain-later' class='crdesc'>
 	 The use of this material in UBC Blogs has been authorized by the copyright holder(s) in one or more of the following ways:<ul>
 <li>The individual (for example, the teaching staff member, course participant or other member of the UBC Blogs site) wishing to distribute the material in the UBC Blogs site holds copyright (solely or jointly) and has duly authorized its upload</li>
