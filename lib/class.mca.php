@@ -50,6 +50,7 @@ UBC holds copyright in the material.</li></ul></div></label></p>";
   			});
 		});
 		*/
+		$j("#html-upload-ui").show();
 	
 		if( $j(".filename.new").length )
  		{
@@ -63,7 +64,7 @@ UBC holds copyright in the material.</li></ul></div></label></p>";
 		$j("input#html-upload").hide();
 		//$j("#html-upload-ui").hide();
 		$j("input#html-upload-2").hide();
-		$j("#plu-upload-ui").hide();
+		$j("#plupload-upload-ui").hide();
 		$j("input[name=cbcr1], input[name=cbcr2], input[name=cbcr3], input[name=cbcr4]").click(function(){
 		if($j("#cbcr1, #cbcr2, #cbcr3, #cbcr4").is(':checked')) {
 			//$j("#html-upload-ui").show();
