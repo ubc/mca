@@ -21,8 +21,9 @@ define( 'MCA_DIR_URL',  plugins_url( ''  , MCA_BASENAME ) );
 require( 'lib/class.mca.php' );
 
 /* actions, filters and hooks */
-add_action( 'pre-upload-ui', array('MCA', 'pre_upload_ui_filter') );
+add_action( 'post-upload-ui', array('MCA', 'pre_upload_ui_filter') );
 add_action( 'post-upload-ui', array('MCA', 'post_upload_ui_filter') );
+add_action( 'pre-upload-ui', array('MCA', 'msg_ui_filter') );
 add_filter( 'attachment_fields_to_edit', array('MCA','meta_filter_mca'), null, 2);
 add_filter( 'attachment_fields_to_save', array('MCA','mca_filter_attachment_fields_to_save'), null , 2);
 add_filter( 'wp_generate_attachment_metadata', array('MCA', 'add_generate_meta'), 1, 2 );
