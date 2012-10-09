@@ -11,8 +11,8 @@ class MCA {
 		echo "<hr/>";
 		echo "<p>For record keeping purposes, please confirm the copyright authorization(s) that apply to the uploaded material(s), from the list below. <em>Note</em>: If uploaded materials contain content from different sources, authorization is required for each source and such information should be recorded. <a target='_blank' href=''>Help</a></p>";
 		echo "<p><input type='checkbox' name='cbcr1' value='cbcr1' id='cbcr1'> <label for='cbcr1'>With the permission of the copyright holder(s)<div class='crdesc'>
-	 The use of this material in Connect has been authorized by the copyright holder(s) in one or more of the following ways:<ul>
-<li>The individual (for example, the teaching staff member, course participant or other member of the Connect site) wishing to distribute the material in the Connect site holds copyright (solely or jointly) and has duly authorized its upload</li>
+	 The use of this material in UBC Blogs has been authorized by the copyright holder(s) in one or more of the following ways:<ul>
+<li>The individual (for example, the teaching staff member, course participant or other member of the UBC Blogs site) wishing to distribute the material in the UBC Blogs site holds copyright (solely or jointly) and has duly authorized its upload</li>
 <li>Specific written permission was obtained from the copyright holder(s)</li>
 <li>A <a target='_blank' href='http://licenses.library.ubc.ca/'>UBC License</a>, a Creative Commons license or other license permits such use
 UBC holds copyright in the material.</li></ul></div></label></p>";
