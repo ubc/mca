@@ -7,20 +7,20 @@ class MCA {
 	public function msg_ui_filter() {
 		echo "<div id='custom-mca'>";
 		echo "<p class='s-desc'><strong>IMPORTANT:</strong> All material uploaded into UBC Blogs must comply with Canadian copyright laws.</p>";
-		echo "<p class='s-desc'>Uploading and posting content from copyrighted works requires authorization under the Copyright Act (for example, fair dealing or other exceptions) or authorization from the copyright holder (for example, specific permission from the copyright holder or a UBC licence that permits such use).</p>";
+		echo "<p class='s-desc'>Uploading and posting content from copyrighted works requires authorization under the Copyright Act or authorization from the copyright holder (for example, specific permission from the copyright holder or a UBC licence that permits such use).</p>";
 		echo "<hr/>";	
 	}
 
 	public function pre_upload_ui_filter() {
 		echo "<p class='s-desc'>For record keeping purposes, please confirm the copyright authorization(s) that apply to the uploaded material(s), from the list below. <em>Note</em>: If uploaded materials contain content from different sources, authorization is required for each source and such information should be recorded. <a target='_blank' href=''>Help</a></p>";
-		echo "<p><input type='checkbox' name='cbcr1' value='cbcr1' id='cbcr1'> <label for='cbcr1'>With the permission of the copyright holder(s) <div id='explain-later' class='crdesc'>
+		echo "<p><input type='checkbox' name='cbcr1' value='cbcr1' id='cbcr1'> <label for='cbcr1'><strong>With the permission of the copyright holder(s)</strong> <div id='explain-later' class='crdesc'>
 	 The use of this material in UBC Blogs has been authorized by the copyright holder(s) in one or more of the following ways:<ul>
 <li>The individual (for example, the teaching staff member, course participant or other member of the UBC Blogs site) wishing to distribute the material in the UBC Blogs site holds copyright (solely or jointly) and has duly authorized its upload</li>
 <li>Specific written permission was obtained from the copyright holder(s)</li>
 <li>A <a target='_blank' href='http://licenses.library.ubc.ca/'>UBC License</a>, a Creative Commons license or other license permits such use
 UBC holds copyright in the material.</li></ul></div></label></p>";
-		echo "<p><input type='checkbox' name='cbcr2' value='cbcr2' id='cbcr2'> <label for='cbcr2'>The material is in the <a target='_blank' href='http://copyright.ubc.ca/faq/basics/#basics8'>Public Domain</a></label></p>";
-		echo "<p><input type='checkbox' name='cbcr3' value='cbcr3' id='cbcr3'> <label for='cbcr3'>Other: <span class='crdesc'>Explain below</span></label></p>";
+		echo "<p><input type='checkbox' name='cbcr2' value='cbcr2' id='cbcr2'> <label for='cbcr2'><strong>The material is in the <a target='_blank' href='http://copyright.ubc.ca/faq/basics/#basics8'>Public Domain</a></strong></label></p>";
+		echo "<p><input type='checkbox' name='cbcr3' value='cbcr3' id='cbcr3'> <label for='cbcr3'><strong>Other:</strong> <span class='crdesc'>Explain below</span></label></p>";
 		echo "<p><label for='cbcr4more'>Additional Information or Comments</label><br/>
 	<span class='crdesc'>Please use this text box to record additional information regarding the copyright authorizations obtained, or to explain the Other classification noted above.</span></p>";
 		echo "<p></p>";
@@ -36,6 +36,7 @@ UBC holds copyright in the material.</li></ul></div></label></p>";
 	.crdesc { color:#777; }
 	/*.s-desc, .crdesc { font-size:8px; } */
 	div.crdesc li { list-style-type: circle; margin-left:20px; }
+	#explain-later { margin-left:20px; }
 	</style>
 
 	<script type="text/javascript">
