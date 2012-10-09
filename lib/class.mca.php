@@ -5,6 +5,7 @@
 class MCA {
 
 	public function pre_upload_ui_filter() {
+		echo "<div id='custom-mca'>";
 		echo "<p><strong>IMPORTANT:</strong> All material uploaded into UBC Blogs must comply with Canadian copyright laws.</p>";
 		echo "<p>Uploading and posting content from copyrighted works requires authorization under the Copyright Act (for example, fair dealing or other exceptions) or authorization from the copyright holder (for example, specific permission from the copyright holder or a UBC licence that permits such use).</p>";
 		echo "<hr/>";
@@ -22,21 +23,30 @@ UBC holds copyright in the material.</li></ul></div></label></p>";
 		echo "<p></p>";
 		echo "<textarea id='cbcr4more' name='cbcr4more' rows='5' cols='40'></textarea>";
 		echo "<hr/>";
+		echo "</div>";
 	}
 
 	public function post_upload_ui_filter() {
 	?>
 	<style>
-	.crdesc { color:#999; }
+	.crdesc { color:#777; }
 	div.crdesc li { list-style-type: circle; margin-left:20px; }
 	</style>
 
 	<script type="text/javascript">
 	var $j = jQuery.noConflict();
 	$j(function(){
+	
+		if( $j(".filename.new").length )
+ 		{
+ 			//alert('Yes');
+ 			$j("#custom-mca").hide();
+ 		}
+	
+		if ( $j("#media-items"))
 		$j(".upload-html-bypass").hide();
 		$j("#html-upload-ui").hide();
-		$j("#plupload-upload-ui").hide();
+		$j("#plu-upload-ui").hide();
 		$j("input[name=cbcr1], input[name=cbcr2], input[name=cbcr3], input[name=cbcr4]").click(function(){
 		if($j("#cbcr1, #cbcr2, #cbcr3, #cbcr4").is(':checked')) {
 			$j("#html-upload-ui").show();
