@@ -5,9 +5,25 @@
 class MCA {
 
 	public function msg_ui_filter() {
+		
+		$screen = get_current_screen();
+		#var_dump($screen->base);
+		if ( $screen->base == 'media' ):
+		echo "<style>.upload-ui { display:none; }
+		#custom-mca { text-align:left; margin: 20px; }
+		.media-frame .uploader-inline { margin: 0px !important; padding: 0px !important; }
+		.uploader-inline-content { position: relative; top: 0px; }
+		</style>";
 		echo "<div id='custom-mca'>";
 		echo "<p class='s-desc'><strong>IMPORTANT:</strong> All material uploaded into UBC Blogs must comply with Canadian copyright laws. Uploading and posting content from copyrighted works requires authorization under the Copyright Act or authorization from the copyright holder (for example, specific permission from the copyright holder or a UBC licence that permits such use).</p>";
-		echo "<hr/>";	
+		echo "<hr/>";
+		else:
+		$url = get_bloginfo('url');
+		echo "<a href='".$url."/wp-admin/media-new.php'>Upload file to Media Library</a>";
+		echo "<style>.upload-ui { display:none; }";
+		
+		endif;
+		
 	}
 
 	public function pre_upload_ui_filter() {
@@ -22,7 +38,6 @@ UBC holds copyright in the material.</li></ul></label></p>";
 		echo "<p><input type='checkbox' name='cbcr3' value='cbcr3' id='cbcr3'> <label for='cbcr3'><strong>Other:</strong> <span class='crdesc'>Explain below</span></label></p>";
 		echo "<label for='cbcr4more'><strong>Additional Information or Comments</strong></label><br/>";
 		echo "<textarea id='cbcr4more' name='cbcr4more' rows='2' cols='80'></textarea><br/><span class='crdesc'>Please use this text box to record additional information regarding the copyright authorizations obtained, or to explain the Other classification noted above.</span><br/>";
-		//echo "<hr/>";
 		echo '<input style="margin-top:10px;" type="submit" name="html-upload" id="html-upload-2" class="button" value="Upload" disabled="disabled">';
 		echo '<p>Maximum upload file size: 9MB. After a file has been uploaded, you can add titles and descriptions.</p>';
 		echo "</div>";
@@ -32,7 +47,6 @@ UBC holds copyright in the material.</li></ul></label></p>";
 	?>
 	<style>
 	.crdesc { color:#777; }
-	/*.s-desc, .crdesc { font-size:8px; } */
 	div.crdesc li { list-style-type: circle; margin-left:20px; }
 	ul#explain-later { list-style-type: circle; margin-left:20px; }
 	#explain-later { margin-left:20px; }
@@ -47,7 +61,6 @@ UBC holds copyright in the material.</li></ul></label></p>";
 		
 		$j('#explain-this').click(function() {
   			$j('#explain-later').toggle('fast', function() {
-  				//$j('#explain-this').
     // Animation complete.
   			});
 		});
@@ -64,19 +77,11 @@ UBC holds copyright in the material.</li></ul></label></p>";
 		if ( $j("#media-items"))
 		$j(".upload-html-bypass").hide();
 		$j("input#html-upload").hide();
-		//$j("#html-upload-ui").hide();
-		//$j("input#html-upload-2").hide();
 		$j("#plupload-upload-ui").hide();
 		$j("input[name=cbcr1], input[name=cbcr2], input[name=cbcr3], input[name=cbcr4]").click(function(){
 		if($j("#cbcr1, #cbcr2, #cbcr3, #cbcr4").is(':checked')) {
-			//$j("#html-upload-ui").show();
-			//$j("input#html-upload-2").show();
-			//$j('input#html-upload-2').attr('disabled', '');
 			$j('input#html-upload-2').removeAttr('disabled');
-			//alert($('input#html-upload-2').attr('disabled'));
 		} else {
-			//$j("#html-upload-ui").hide();
-			//$j("input#html-upload-2").hide();
 			$j('input#html-upload-2').attr('disabled','disabled');
 		}
 		});
