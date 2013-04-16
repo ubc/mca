@@ -17,7 +17,7 @@
 
 
 if( function_exists( 'add_filter' ) ) {
-	add_action( 'plugins_loaded', array( 'I_Want_The_Old_Uploader', 'get_object' ) );
+	add_action( 'init', array( 'I_Want_The_Old_Uploader', 'get_object' ) );
 }
 
  
@@ -35,11 +35,11 @@ class I_Want_The_Old_Uploader
 	public function __construct()
 	{
 		// p2 theme front end add media removal
-		if( class_exists( 'P2' ) ):
+		if( class_exists( 'P2' ) ) {
 			require_once( ABSPATH . '/wp-admin/includes/media.php' );
-		endif;
-		
-		add_action( 'get_header', array( $this, 'remove_media_buttons' ) );
+			add_action( 'get_header', array( $this, 'remove_media_buttons' ) );
+		}
+
 		// Old Upload buttons and thickbox
 		add_action( 'admin_head', array( $this, 'remove_media_buttons' ) );
 		 
