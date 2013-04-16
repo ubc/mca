@@ -15,8 +15,9 @@
 * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
 
+
 if( function_exists( 'add_filter' ) ) {
-	add_action( 'init', array( 'I_Want_The_Old_Uploader', 'get_object' ) );
+	add_action( 'plugins_loaded', array( 'I_Want_The_Old_Uploader', 'get_object' ) );
 }
 
  
@@ -33,15 +34,11 @@ class I_Want_The_Old_Uploader
 	*/
 	public function __construct()
 	{
+		// p2 theme front end add media removal
+		include_once( ABSPATH . '/wp-admin/includes/media.php' );
+		add_action( 'get_header', array( $this, 'remove_media_buttons' ) );
 		// Old Upload buttons and thickbox
 		add_action( 'admin_head', array( $this, 'remove_media_buttons' ) );
-
-		// add action hook for p2 theme
-		if( class_exists('P2') ) {
-			add_action( 'init', array( $this, 'enqueue_jquery' ) );
-			add_action( 'wp_head', array( $this, 'frontend_remove_media_buttons' ) );
-			add_action( 'wp_head', array( $this, 'frontend_add_media_buttons' ) );
-		}
 		 
 		// Featured Image
 		add_action( 'wp_default_scripts', array( $this, 'unset_media_views' ), 999, 1 );
@@ -49,14 +46,6 @@ class I_Want_The_Old_Uploader
 		 
 		// Full screen behavior
 		add_action( 'after_wp_tiny_mce', array( $this, 'fullscreen_media_button' ) );
-	}
-	
-	/**
-	* enqueue jquery for frontend
-	*/
-	public function enqueue_jquery()
-	{
-		wp_enqueue_script( 'jquery' );
 	}
 	 
 	/**
@@ -68,30 +57,10 @@ class I_Want_The_Old_Uploader
 	{
 		if( NULL === self::$classobj )
 			self::$classobj = new self;
-		 
+		
 		return self::$classobj;
 	}
 	 
-	/**
-	* Removes the Add Media buttons from the p2 theme frontend
-	*/
-	public function frontend_remove_media_buttons()
-	{
-		// jQuery hack to remove the Add Media button without removing the context
-		// PLACEHOLDER UNTIL PHP SOLUTION IS DEVELOPED
-		?>
-		<script>
-			jQuery(document).ready(function($) {
-				$('div#media-buttons').find('a.button[title="Add Media"]').remove();
-			});
-		</script>
-		<?php
-	}
-	
-	public function frontend_add_media_buttons()
-	{
-		add_action( 'media_buttons', array( $this, 'old_media_buttons' ) );
-	}
 	/**
 	* Old Upload Buttons & Thickbox
 	*/
