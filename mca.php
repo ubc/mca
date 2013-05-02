@@ -18,8 +18,8 @@ define( 'MCA_DIR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MCA_BASENAME', plugin_basename(__FILE__) );
 define( 'MCA_DIR_URL',  plugins_url( ''  , MCA_BASENAME ) );
 
-require( 'lib/class.mca.php' );
-require( 'lib/class.old-upload-method.php' );
+require_once( 'lib/class.mca.php' );
+require_once( 'lib/class.old-upload-method.php' );
 
 /* actions, filters and hooks */
 add_action( 'post-upload-ui', array('MCA', 'pre_upload_ui_filter') );
