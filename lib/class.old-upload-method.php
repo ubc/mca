@@ -35,8 +35,8 @@ class I_Want_The_Old_Uploader
 	public function __construct()
 	{
 		// p2 theme front end add media removal
-		if( class_exists( 'P2' ) ) {
-			require_once( ABSPATH . '/wp-admin/includes/media.php' );
+		if( class_exists( 'P2' ) || class_exists( 'PulsePress' ) ) {
+			include_once( ABSPATH . '/wp-admin/includes/media.php' );
 			add_action( 'get_header', array( $this, 'remove_media_buttons' ) );
 		}
 
@@ -63,6 +63,30 @@ class I_Want_The_Old_Uploader
 		
 		return self::$classobj;
 	}
+
+	/**
+	* Removes the Add Media buttons from the p2 theme frontend
+	*/
+	public function frontend_remove_media_buttons()
+	{
+		// jQuery hack to remove the Add Media button without removing the context
+		// PLACEHOLDER UNTIL PHP SOLUTION IS DEVELOPED
+		?>
+		<script>
+			jQuery(document).ready(function($) {
+				$('div#media-buttons').find('a.button[title="Add Media"]').remove();
+			});
+		</script>
+		<?php
+	}
+
+	/**
+	* adds the old media upload button to the frontend for p2
+	*/
+	public function frontend_add_media_buttons()
+	{
+		add_action( 'media_buttons', array( $this, 'old_media_buttons' ) );
+	}
 	 
 	/**
 	* Old Upload Buttons & Thickbox
@@ -77,11 +101,13 @@ class I_Want_The_Old_Uploader
 	public function old_media_buttons( $editor_id = 'content' )
 	{
 		$context = apply_filters( 'media_buttons_context', __( 'Upload/Insert %s' ) );
-		 
-		$img = '<img src="'
-		. esc_url( admin_url( 'images/media-button.png?ver=20111005' ) )
-		. '" width="15" height="15" />';
-		 
+		
+		if( class_exists( 'P2' ) ) {
+			$img = '<img src="'
+			. esc_url( admin_url( 'images/media-button.png?ver=20111005' ) )
+			. '" width="15" height="15" />';
+		}
+
 		echo '<a href="'
 		. esc_url( get_upload_iframe_src() )
 		. '" class="thickbox add_media" id="'
