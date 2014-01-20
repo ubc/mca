@@ -24,7 +24,7 @@ UBC holds copyright in the material.</li></ul></label></p>";
 		echo "<textarea id='cbcr4more' name='cbcr4more' rows='2' cols='80'></textarea><br/><span class='crdesc'>Please use this text box to record additional information regarding the copyright authorizations obtained, or to explain the Other classification noted above.</span><br/>";
 		//echo "<hr/>";
 		echo '<input style="margin-top:10px;" type="submit" name="html-upload" id="html-upload-2" class="button" value="Upload" disabled="disabled">';
-		echo '<p>Maximum upload file size: 9MB. After a file has been uploaded, you can add titles and descriptions.</p>';
+		echo '<p>Maximum upload file size: '.intval(wp_max_upload_size()/102400).'MB. After a file has been uploaded, you can add titles and descriptions.</p>';
 		echo "</div>";
 	}
 
