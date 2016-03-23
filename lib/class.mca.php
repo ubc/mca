@@ -40,6 +40,15 @@ UBC holds copyright in the material.</li></ul></label></p>";
 	</style>
 
 	<script type="text/javascript">
+	// This isn't ideal, but it will work for a quick fix. @TODO: Proper errror handling.
+	jQuery( window ).on( 'dropzone:enter', function() {
+
+		if( ! jQuery( "#cbcr1, #cbcr2, #cbcr3, #cbcr4" ).is(':checked') ) {
+			alert( 'You must select which authorizations you have to upload this material.' );
+			return;
+		}
+
+	} );
 	var $j = jQuery.noConflict();
 	$j(function(){
 		$j("drag-drop-area").hide();
