@@ -4,13 +4,13 @@
 
 class MCA {
 
-	public function msg_ui_filter() {
+	public static function msg_ui_filter() {
 		echo "<div id='custom-mca'>";
 		echo "<p class='s-desc'><strong>IMPORTANT:</strong> All material uploaded into UBC Blogs must comply with Canadian copyright laws. Uploading and posting content from copyrighted works requires authorization under the Copyright Act or authorization from the copyright holder (for example, specific permission from the copyright holder or a UBC licence that permits such use).</p>";
-		echo "<hr/>";	
+		echo "<hr/>";
 	}
 
-	public function pre_upload_ui_filter() {
+	public static function pre_upload_ui_filter() {
 		echo "<p class='s-desc'>For record keeping purposes, please confirm the copyright authorization(s) that apply to the uploaded material(s), from the list below. <em>Note</em>: If uploaded materials contain content from different sources, authorization is required for each source and such information should be recorded. <a target='_blank' title='Documentation about using this form' href='http://wiki.ubc.ca/Documentation:UBC_Blogs/Copyright_Upload_Form'>Help</a></p>";
 		echo "<p><input type='checkbox' name='cbcr1' value='cbcr1' id='cbcr1'> <label for='cbcr1'><strong>With the permission of the copyright holder(s)</strong>: <span class='crdesc'>The use of this material in UBC Blogs has been authorized by the copyright holder(s) in one or more of the following ways…</span> <a href='#' id='explain-this' title='Expand'>Expand</a>
 		<ul id='explain-later' class='crdesc'>
@@ -28,7 +28,7 @@ UBC holds copyright in the material.</li></ul></label></p>";
 		echo "</div>";
 	}
 
-	public function post_upload_ui_filter() {
+	public static function post_upload_ui_filter() {
 	?>
 	<style>
 	.crdesc { color:#777; }
@@ -36,10 +36,11 @@ UBC holds copyright in the material.</li></ul></label></p>";
 	div.crdesc li { list-style-type: circle; margin-left:20px; }
 	ul#explain-later { list-style-type: circle; margin-left:20px; }
 	#explain-later { margin-left:20px; }
-	.max-upload-size, .after-file-upload { display:none; } 
+	.max-upload-size, .after-file-upload { display:none; }
 	</style>
 
 	<script type="text/javascript">
+
 	// This isn't ideal, but it will work for a quick fix. @TODO: Proper errror handling.
 	jQuery( window ).on( 'dropzone:enter', function() {
 
@@ -49,27 +50,29 @@ UBC holds copyright in the material.</li></ul></label></p>";
 		}
 
 	} );
+
 	var $j = jQuery.noConflict();
 	$j(function(){
 		$j("drag-drop-area").hide();
 		$j("#explain-later").hide();
-		
+		$j( '.uploader-inline-content .upload-ui' ).hide();
+
 		$j('#explain-this').click(function() {
   			$j('#explain-later').toggle('fast', function() {
   				//$j('#explain-this').
     // Animation complete.
   			});
 		});
-	
+
 		$j("#html-upload-ui").show();
-	
+
 		if( $j(".filename.new").length )
  		{
  			//alert('Yes');
  			$j("#custom-mca").hide();
  			$j("#html-upload-ui").hide();
  		}
-	
+
 		if ( $j("#media-items"))
 		$j(".upload-html-bypass").hide();
 		$j("input#html-upload").hide();
@@ -82,6 +85,7 @@ UBC holds copyright in the material.</li></ul></label></p>";
 			//$j("input#html-upload-2").show();
 			//$j('input#html-upload-2').attr('disabled', '');
 			$j('input#html-upload-2').removeAttr('disabled');
+
 			//alert($('input#html-upload-2').attr('disabled'));
 		} else {
 			//$j("#html-upload-ui").hide();
@@ -94,57 +98,57 @@ UBC holds copyright in the material.</li></ul></label></p>";
 	<?php
 	}
 
-	public function meta_filter_mca($form_fields, $post) {
+	public static function meta_filter_mca($form_fields, $post) {
 		$cbcr1 = (bool) get_post_meta($post->ID, '_cbcr1', true);
 		$cbcr2 = (bool) get_post_meta($post->ID, '_cbcr2', true);
-		$cbcr3 = (bool) get_post_meta($post->ID, '_cbcr3', true);	
-			
+		$cbcr3 = (bool) get_post_meta($post->ID, '_cbcr3', true);
+
 		$form_fields["copyright_authorization"] = array(
 			"label" => __("Copyright Authorization(s)"),
 			"input" => "html",
 			"html" => "<ul>
 				<li><input type='checkbox' ".($cbcr1 ? "checked" : "")."
-    name='attachments[{$post->ID}][cbcr1]' 
+    name='attachments[{$post->ID}][cbcr1]'
     id='attachments[{$post->ID}][cbcr1]' /> <label for='attachments[{$post->ID}][cbcr1]'>With the permission of the copyright holder(s)</label></li>
 				<li><input type='checkbox' ".($cbcr2 ? "checked" : "")."
-    name='attachments[{$post->ID}][cbcr2]' 
+    name='attachments[{$post->ID}][cbcr2]'
     id='attachments[{$post->ID}][cbcr2]' /> <label for='attachments[{$post->ID}][cbcr2]'>The material is in the Public Domain</label></li>
 				<li><input type='checkbox' ".($cbcr3 ? "checked" : "")."
-    name='attachments[{$post->ID}][cbcr3]' 
+    name='attachments[{$post->ID}][cbcr3]'
     id='attachments[{$post->ID}][cbcr3]' /> <label for='attachments[{$post->ID}][cbcr3]'>Other</label></li>
-			</ul>" );		
-			
+			</ul>" );
+
 			$form_fields["cbcr4more"] = array(
 				"label" => __("Additional Informations or Comments"),
 				"input" => "textarea",
 				"value" => get_post_meta($post->ID, "_cbcr4more", true)
 			);
 
-			
+
 			return $form_fields;
 	}
-	
-	public function add_generate_meta($metadata, $attachment_id) {
+
+	public static function add_generate_meta($metadata, $attachment_id) {
 		update_post_meta($attachment_id, '_cbcr1', $_POST["cbcr1"]);
 		update_post_meta($attachment_id, '_cbcr2', $_POST["cbcr2"]);
 		update_post_meta($attachment_id, '_cbcr3', $_POST["cbcr3"]);
 		update_post_meta($attachment_id, '_cbcr4more', $_POST["cbcr4more"]);
 		return $metadata;
 	}
-	
-	public function mca_filter_attachment_fields_to_save($post, $attachment) {
-	
-     // update_post_meta(postID, meta_key, meta_value); 	
+
+	public static function mca_filter_attachment_fields_to_save($post, $attachment) {
+
+     // update_post_meta(postID, meta_key, meta_value);
 		update_post_meta($post['ID'], '_cbcr1', $attachment['cbcr1']);
 		update_post_meta($post['ID'], '_cbcr2', $attachment['cbcr2']);
 		update_post_meta($post['ID'], '_cbcr3', $attachment['cbcr3']);
 		#var_dump($attachment);
 		#die();
-		
+
     if( isset($attachment['cbcr4more']) ){
     	update_post_meta($post['ID'], '_cbcr4more', $attachment['cbcr4more']);
-    }  		
-		
+    }
+
 		return $post;
 	}
 }
