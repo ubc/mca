@@ -91,6 +91,7 @@ UBC holds copyright in the material.</li></ul></label></p>";
 		} else {
 			//$j("#html-upload-ui").hide();
 			//$j("input#html-upload-2").hide();
+			$j( '.uploader-inline-content .upload-ui' ).hide();
 			$j('input#html-upload-2').attr('disabled','disabled');
 		}
 		});
