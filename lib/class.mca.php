@@ -81,6 +81,7 @@ UBC holds copyright in the material.</li></ul></label></p>";
 		$j("#plupload-upload-ui").hide();
 		$j("input[name=cbcr1], input[name=cbcr2], input[name=cbcr3], input[name=cbcr4]").click(function(){
 		if($j("#cbcr1, #cbcr2, #cbcr3, #cbcr4").is(':checked')) {
+			$j( '.uploader-inline-content .upload-ui' ).show();
 			//$j("#html-upload-ui").show();
 			//$j("input#html-upload-2").show();
 			//$j('input#html-upload-2').attr('disabled', '');
