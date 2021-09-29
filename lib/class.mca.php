@@ -28,8 +28,8 @@ distribute the material in the UBC Blogs site holds copyright (solely or jointly
 Commons license or other license permits such use
 UBC holds copyright in the material.</li></ul></label></p>";
 		echo "<p><input type='checkbox' name='cbcr2' value='cbcr2' id='cbcr2'> <label for='cbcr2'><strong>Public Domain:</strong> 
-<span class='crdesc'>The material is in the <a target='_blank' href='http://copyright.ubc.ca/faq/basics/#basics8' title='More information 
-about the public domain'>Public Domain</a></span></label></p>";
+<span class='crdesc'>The material is in the <a target='_blank' href='https://copyright.ubc.ca/public-domain/' title='More information 
+about the public domain'>Public Domain</a>. Note that material that appears publicly online is not automatically considered part of the Public Domain. To ensure you’re able to use material without permission, please see more information on the <a target='_blank' href='https://copyright.ubc.ca/public-domain/' title='More information about the public domain'>Public Domain</a>.</span></label></p>";
 		echo "<p><input type='checkbox' name='cbcr3' value='cbcr3' id='cbcr3'> <label for='cbcr3'><strong>Other:</strong> <span 
 class='crdesc'>Explain below</span></label></p>";
 		echo "<label for='cbcr4more'><strong>Additional Information or Comments</strong></label><br/>";
@@ -131,7 +131,7 @@ titles and descriptions.</p>';
 holder(s)</label></li>
 				<li><input type='checkbox' ".($cbcr2 ? "checked" : "")."
     name='attachments[{$post->ID}][cbcr2]'
-    id='attachments[{$post->ID}][cbcr2]' /> <label for='attachments[{$post->ID}][cbcr2]'>The material is in the Public Domain</label></li>
+    id='attachments[{$post->ID}][cbcr2]' /> <label for='attachments[{$post->ID}][cbcr2]'>The material is in the Public Domain. Note that material that appears publicly online is not automatically considered part of the Public Domain. To ensure you’re able to use material without permission, please see more information on the Public Domain.</label></li>
 				<li><input type='checkbox' ".($cbcr3 ? "checked" : "")."
     name='attachments[{$post->ID}][cbcr3]'
     id='attachments[{$post->ID}][cbcr3]' /> <label for='attachments[{$post->ID}][cbcr3]'>Other</label></li>
